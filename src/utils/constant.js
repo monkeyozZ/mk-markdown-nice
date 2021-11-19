@@ -109,7 +109,7 @@ export const SITDOWN_OPTIONS = [
   },
   {
     key: "juejin",
-    value: "掘金 - https://juejin.im/post/",
+    value: "掘金 - https://juejin.cn/post/",
     desc: "掘金引擎",
   },
   {

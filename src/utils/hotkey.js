@@ -181,12 +181,15 @@ export const rightClick = (cm) => {
     element.style.display = "block";
     // event--ie  ev--其他浏览器
     const oEvent = window.event || window.ev;
+    const obj = document.querySelector('.nice-app').getBoundingClientRect()
     // documentElement--其他游览器    body--谷歌
-    const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    // const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
     // 菜单的style样式跟随鼠标的位置
-    element.style.top = oEvent.clientY + scrollTop + "px";
-    const scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
-    element.style.left = oEvent.clientX + scrollLeft + "px";
+    // element.style.top = oEvent.clientY + scrollTop + "px";
+    element.style.top = oEvent.clientY - obj.top + "px";
+    // const scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+    // element.style.left = oEvent.clientX + scrollLeft + "px";
+    element.style.left = oEvent.clientX - obj.left + "px";
     return false;
   };
   window.onclick = (e) => {
