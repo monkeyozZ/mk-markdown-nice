@@ -60,33 +60,35 @@ class App extends Component {
     document.addEventListener("mozfullscreenchange", this.solveScreenChange);
     document.addEventListener("MSFullscreenChange", this.solveScreenChange);
     try {
-      window.MathJax = {
-        tex: {
-          inlineMath: [["$", "$"]],
-          displayMath: [["$$", "$$"]],
-          tags: "ams",
-        },
-        svg: {
-          fontCache: "none",
-        },
-        options: {
-          renderActions: {
-            addMenu: [0, "", ""],
-            addContainer: [
-              190,
-              (doc) => {
-                for (const math of doc.math) {
-                  this.addContainer(math, doc);
-                }
-              },
-              this.addContainer,
-            ],
+      if (!pluginCenter.mathjax) {
+        window.MathJax = {
+          tex: {
+            inlineMath: [["$", "$"]],
+            displayMath: [["$$", "$$"]],
+            tags: "ams",
           },
-        },
-      };
-      // eslint-disable-next-line
-      require("mathjax/es5/tex-svg-full");
-      pluginCenter.mathjax = true;
+          svg: {
+            fontCache: "none",
+          },
+          options: {
+            renderActions: {
+              addMenu: [0, "", ""],
+              addContainer: [
+                190,
+                (doc) => {
+                  for (const math of doc.math) {
+                    this.addContainer(math, doc);
+                  }
+                },
+                this.addContainer,
+              ],
+            },
+          },
+        };
+        // eslint-disable-next-line
+        require("mathjax/es5/tex-svg-full");
+        pluginCenter.mathjax = true;
+      }
     } catch (e) {
       console.log(e);
     }
